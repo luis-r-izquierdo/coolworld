@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+
+   <TITLE>CoolWorld</TITLE>
+
+   <META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+   <META name=keywords content="Markov chains, NetLogo, agent-based modelling">
+
+   <META name=Description content="CoolWorld is an agent-based model designed to illustrate the usefulness of the theory of Markov chains to analyse computer models.">
+
+   <META name=Authors content="Luis R. Izquierdo, Segismundo S. Izquierdo, José M. Galán & José I. Santos">
+
+   <STYLE type="text/css">
+      H1 {
+         BACKGROUND-COLOR: #111199;
+         color: #ffffff;
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      H2 {
+         BACKGROUND-COLOR: #66ccff;
+         font-family: arial
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      H3 {
+         BACKGROUND-COLOR: #cccccc;
+         font-family: verdana;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      p {
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      table {
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      ul {
+         font-family: monospace
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.parameter {
+         font-family: arial;
+         color: red;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.button {
+         font-family: arial;
+         color: blue;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.value {
+         font-family: arial;
+         color: #444444;
+         font-weight: bold
+      }
+   </STYLE>
+   <STYLE type="text/css">
+      i.slider {
+         font-family: arial;
+         color: green;
+         font-weight: bold
+      }
+   </STYLE>
+
+</HEAD>
+
+<body>
+
+   <H1>CoolWorld</H1>
+   <h3>Luis R. Izquierdo, Segismundo S. Izquierdo, José M. Galán &amp; José I. Santos</h3>
+
+   <H2>HOW TO INSTALL THE MODEL</H2>
+
+   <p>To use CoolWorld, you will have to install <a target="_blank" href="http://ccl.northwestern.edu/netlogo/">NetLogo 5.3.1 (free and open source)</a> and download <a href="CoolWorld.nlogo">the model itself</a>. Unzip the downloaded file and click on CoolWorld.nlogo</p>
+
+   <!--
+   <p>This applet requires Java 1.4.1 or higher. You may obtain the latest Java plugin from
+      <a target="_blank" href="http://java.sun.com/getjava/download.html">Sun's Java site</a>.</p>
+   <hr>
+
+   <p align="center">
+      <applet code="org.nlogo.lite.Applet" archive="NetLogoLite.jar" width="876" height="480" alt="You can download NetLogo (free and open source) and the model clicking on the links below">
+         <param name="DefaultModel" value="CoolWorld.nlogo">
+         <param name="java_arguments" value="-Djnlp.packEnabled=true">
+      </applet>
+   </p>
+
+   <p align=right>
+      created with <a target="_blank" href="http://ccl.northwestern.edu/netlogo/">NetLogo</a>
+      <br>view/download model file: <a target="_blank" href="CoolWorld.nlogo">CoolWorld.nlogo</a>
+   </p>
+   -->
+
+
+   <h2>QUICK GUIDE</h2>
+
+   <table cellspacing=5 cellpadding=5 border=1>
+
+      <tr>
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="clear.png" alt="clear"></td>
+                  <td>This button resets the model, and generates a random seed from the current time.</td>
+               </tr>
+            </table>
+         </td>
+
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="change-random-seed.png" alt="change-random-seed"></td>
+                  <td>This button enables the user to select a random seed.</td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="create-hot-spot.png" alt="create-hot-spot"></td>
+                  <td>Press this button and then click on a patch in the display area to set the selected patch's temperature to 100. When finished, click on the button again.</td>
+               </tr>
+            </table>
+         </td>
+
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="special-conditions.png" alt="special-conditions"></td>
+                  <td>This button sets some particular initial conditions for the model.</td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="diffuse-heat.png" alt="diffuse-heat"></td>
+                  <td>Press this button to diffuse the heat from patches to their surrounding patches.</td>
+               </tr>
+            </table>
+         </td>
+
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="pause-at-time-step.png" alt="pause-at-time-step"></td>
+                  <td>The model will halt at the end of this time-step. To resume, you can press the button <i class="button">go</i> again.</td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="create-house.png" alt="create-house"></td>
+                  <td>Press this button and then click on a patch in the display area to place a house on the selected patch. When finished, click on the button again.</td>
+               </tr>
+            </table>
+         </td>
+
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="go.png" alt="go"></td>
+                  <td> Pressing this button will run the model until this same button is pressed again (or until time-step <i class="slider">pause-at-time-step</i>, if not reached yet).</td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="create-walker.png" alt="create-walker"></td>
+                  <td>Press this button and then click on a patch in the display area to place a walker on the selected patch. When finished, click on the button again.</td>
+               </tr>
+            </table>
+         </td>
+
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="go-once.png" alt="go-once"></td>
+                  <td> Pressing this button will run the model one time-step only; i.e. every walker is given only one opportunity to move.</td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="prob-random-move.png" alt="prob-random-move"></td>
+                  <td>In every time-step, this is the probability that a walker moves randomly to one of her neighbouring patches, instead of moving to one of her hottest neighbouring patches.</td>
+               </tr>
+            </table>
+         </td>
+
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="display-mode.png" alt="display-mode"></td>
+                  <td>Patches are coloured according to their temperature value (if <i class="slider">display-mode</i> is <i class="value">Temperature</i>) or according to the number of visits they have received (if <i class="slider">display-mode</i> is <i class="value">Visits</i>).</td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+
+      <tr>
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="prob-leaving-home.png" alt="prob-leaving-home"></td>
+                  <td>In every time-step, this is the probability that a walker who is in a house abandons it.</td>
+               </tr>
+            </table>
+         </td>
+
+         <td width="50%">
+            <table cellspacing=5>
+               <tr>
+                  <td><img src="view-hide.png" alt="view-hide"></td>
+                  <td>These buttons show or hide patches' temperature rounded to the nearest integer.</td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+
+   </table>
+
+
+   <H2>DESCRIPTION OF THE MODEL</H2>
+   <p>CoolWorld is an agent-based model designed to illustrate the usefulness of the theory of Markov chains to analyse computer models. This section explains the formal model that CoolWorld implements. The information provided here should suffice to re-implement the same formal model in any sophisticated enough modelling platform. We use bold red italicised arial font to denote <i class="parameter">parameters</i> (i.e. variables that can be set by the user). For the sake of clarity in the explanation, we distinguish two components in CoolWorld: the agents and the environment. The agents in CoolWorld wander around the (cold) environment, showing a preference for warm places and houses.</p>
+
+   <H3>The environment</H3>
+   <p>The environment in CoolWorld is a 2-dimensional grid divided into square patches. The <i class="parameter">size</i> and <i class="parameter">topology</i> (toroidal, cylindrical, or fully bounded) of the environment can be set by the user. The environment has a certain <i class="parameter">temperature profile</i> and a <i class="parameter">distribution of houses</i>. More precisely:</p>
+   <ul>
+      <li>Each individual patch has a specific temperature, which is a floating-point number in the interval [0, 100]. This defines the environment’s temperature profile.</li>
+      <li>The environment may also contain houses. Each individual house sits on one and only one patch, and each patch may contain at most one house.</li>
+   </ul>
+   <p>Unless the user interacts with the model at run-time, neither the temperature profile nor the distribution of houses changes during the course of a simulation run. Finally, a patch’s neighbourhood is defined as the set of (up to 8) other patches with which the patch shares an edge or a corner.</p>
+
+
+   <H3>The agents</H3>
+   <p>Agents in CoolWorld are called walkers, as walking on the environment is pretty much all they do. The user can choose the <i class="parameter">number of walkers</i> and their <i class="parameter">initial location</i> (i.e. a certain patch). When a walker is given the opportunity to move, her behaviour is determined by the following algorithm:</p>
+   <ul>
+      <li>If the walker is on a patch with a house:
+         <ul>
+            <li>she will move to a random neighbouring patch with probability <i class="parameter">prob-leaving-home</i>, and</li>
+            <li>she will stay on the same patch with probability (1 – <i class="parameter">prob-leaving-home</i>).</li>
+         </ul>
+      </li>
+      <li>If the walker is on a patch with no house:
+         <ul>
+            <li>with probability <i class="parameter">prob-random-move</i> she will move to a random neighbouring patch and,</li>
+            <li>with probability (1 – <i class="parameter">prob-random-move</i>) she will explore her surroundings looking for heat. Specifically, the agent will consider the patch she is standing on together with its neighbouring patches as potential patches to be at. She will then move to one of the patches with the highest temperature within this set of potential target patches (i.e. she will potentially stay on the same patch). Ties are resolved randomly.</li>
+         </ul>
+      </li>
+   </ul>
+   <p>The value of <i class="parameter">prob-leaving-home</i> and <i class="parameter">prob-random-move</i> is shared by every walker in the model. There is no restriction about the number of walkers that can stay on the same patch at any time.</p>
+
+
+   <H3>Scheduling of events</H3>
+   <p>Events in CoolWorld take place in discrete time-steps. In every time-step each individual walker is given the opportunity to move once.</p>
+
+   <H2>HOW TO USE IT</H2>
+
+   <p>We use bold blue arial font to denote <i class="button">button</i> names. The button <i class="button">Clear</i> resets the model, and generates a random seed from the current time.</p>
+
+   <H3>Setting up the environment</H3>
+   <p>The environment in the applet above is made up of 33 patches x 33 patches and does not wrap around. The <i class="parameter">size</i> and <i class="parameter">topology</i> of the environment can be changed by the user if the model is <a target="_blank" href="CoolWorld.nlogo">downloaded</a> and used within <a target="_blank" href="http://ccl.northwestern.edu/netlogo/">NetLogo</a>.</p>
+   <ul>
+      <li>The user can create her own <i class="parameter">temperature profile</i> by pressing the button <i class="button">Create hot spot</i> (which sets the temperature of the selected patch to 100) and by <i class="button">Diffusing the heat</i> (<a href="#Diffuse-heat">see how this works in detail at the bottom of this page</a>). More complex temperature profiles can be set if the model is <a target="_blank" href="CoolWorld.nlogo">downloaded</a> and used within NetLogo.</li>
+      <li>The <i class="parameter">number of houses</i> and their <i class="parameter">initial location</i> can be determined by pressing <i class="button">Create house</i> and clicking on a target patch.</li>
+   </ul>
+
+   <H3>Setting up walkers</H3>
+   <p>The user can choose the <i class="parameter">number of walkers</i> and their <i class="parameter">initial position</i> by clicking on <i class="button">Create walker</i>. When this button is clicked on, a walker is created on the selected patch, unless there is already a walker on that same patch. The values of <i class="parameter">prob-leaving-home</i> and <i class="parameter">prob-random-move</i> can be set using the corresponding sliders.</p>
+
+   <H3>Other settings</H3>
+
+   <table cellspacing=20 border=0>
+      <tr>
+
+         <td valign=top width="50%">
+            <hr>
+            <b>Random seed</b>
+            <br> The user can also change the value of the <i class="parameter">random seed</i> used to generate pseudorandom numbers by clicking on <i class="button">Change random seed</i>. This functionality provides the opportunity to conduct exact replications of individual simulation runs.
+            <hr>
+
+            <b>Predefined initial conditions</b>
+            <br> If the button <i class="button">Special Conditions</i> is pressed, the model is parameterised as follows:
+            <ul>
+               <li>Environment: The <i class="parameter">temperature profile</i> is concentrical, i.e. a patch’s temperature is inversely proportional to its distance to the central patch. A <i class="parameter">house</i> is created in every patch whose distance to the centre of the environment is greater or equal to 5 units and less than 6 units (distances between patches are measured from their centres).</li>
+               <li>Walkers: There are <i class="parameter">100 walkers</i> and they all start at a <i class="parameter">random initial location</i>. The value of <i class="parameter">prob-leaving-home</i> is 0.01 and the value of <i class="parameter">prob-random-move</i> is 0.5.</li>
+            </ul>
+
+            <hr>
+            <b>Halting the model at a certain time-step</b>
+            <br> The user can pause the model at any time-step by setting the slider <i class="parameter">pause-at-time-step</i>.
+            <hr>
+         </td>
+
+         <td align=center valign=middle width="50%"><img src="specialConditions.png" border="1" alt="special conditions"></td>
+
+      </tr>
+   </table>
+
+
+   <H3>Running the model</H3>
+   <p>When the button <i class="button">go once</i> is pressed, every walker is given one opportunity to move. Pressing the button <i class="button">go</i> runs the model indefinitely (or until time-step <i class="parameter">pause-at-time-step</i>, if not reached yet). The user can modify the value of any parameter at run-time. In particular, new hot spots and walkers can be created while the model runs.</p>
+
+
+   <H3>Displays</H3>
+   <p>The large square roughly in the middle of the applet is the representation of the 2D environment and the walkers. Houses <img src="house.png" border="0" alt="house"> are coloured in orange. Walkers are coloured in green, and represented as a person <img src="person.png" border="0" alt="person"> if standing on a patch without a house, and as a smiling face <img src="smilingFace.png" border="0" alt="smiling face"> if standing on a patch with a house. In the latter case, the white label indicates the number of walkers in the same house. </p>
+
+   <p>Patches are coloured according to their temperature value (if <i class="parameter">display-mode</i> is <i class="value">Temperature</i>) or according to the number of visits they have received (if <i class="parameter">display-mode</i> is <i class="value">Visits</i>).</p>
+   <ul>
+      <li>If the <i class="parameter">display-mode</i> is <i class="value">Temperature</i>, patches are coloured in shades of red: the higher the temperature, the darker the shade of red. The user can also read the integral part of patches’ temperature value by clicking on <i class="button">View ºC</i>.</li>
+      <li>If the <i class="parameter">display-mode</i> is <i class="value">Visits</i>, patches are coloured in shades of blue according to the number of walkers that have spent some time on them. Each walker that has visited a certain patch leaves a mark that is used to create this density plot. The more walkers who have stayed for longer in a certain patch, the darker its shade of blue.</li>
+   </ul>
+
+
+   <H2>LICENCE</H2>
+   <p>CoolWorld is an agent-based model designed to illustrate the usefulness of the theory of Markov chains to analyse computer models.
+      <br>Copyright (C) 2008 <a target="_blank" href="http://luis.izqui.org">Luis R. Izquierdo</a>, <a target="_blank" href="http://segis.izqui.org">Segismundo S. Izquierdo</a>, <a target="_blank" href="http://josema.galan.name">José M. Galán</a> &amp; <a target="_blank" href="http://nacho.santos.name">José I. Santos</a></p>
+   <p>This program is free software; you can redistribute it and/or modify it under the terms of the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.</p>
+   <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> for more details.</p>
+   <p>You can download a copy of the <a target="_blank" href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> by clicking <a target="_blank" href="./gpl-3.0.txt">here</a>; you can also get a printed copy writing to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</p>
+   <p>Contact information:
+      <br>Luis R. Izquierdo
+      <br> University of Burgos, Spain.
+      <br> e-mail: <a href="mailto:luis@izquierdo.name">luis@izquierdo.name</a>
+   </p>
+
+   <H2>MODELLERS</H2>
+   <p>This program has been designed and implemented by <a target="_blank" href="http://luis.izqui.org">Luis R. Izquierdo</a>, <a target="_blank" href="http://segis.izqui.org">Segismundo S. Izquierdo</a>, <a target="_blank" href="http://josema.galan.name">José M. Galán</a> &amp; <a target="_blank" href="http://nacho.santos.name">José I. Santos</a></p>
+   <hr>
+   <p><a name="Diffuse-heat"><b>Final notes: Precise workings of <i class="button">Diffuse heat</i></b>.</a>
+      <br>When the button <i class="button">Diffuse heat</i> is pressed, the following algorithm is executed sequentially 10 times: “Each patch shares 50 percent of its temperature with its eight neighbouring patches. If a patch has fewer than eight neighbours the remainder stays on the patch whose temperature is being shared. Temperature updating occurs synchronously, i.e. all patches calculate at the same time how much temperature to give to each of their neighbours considering their individual temperature at time t; once every patch has calculated how much to share with each of its neighbours, all patches’ new temperature values at time t + 1 are updated at the same time.”</p>
+
+</body>
+
+</html>
