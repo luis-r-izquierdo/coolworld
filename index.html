@@ -260,10 +260,10 @@
    <H3>The environment</H3>
    <p>The environment in CoolWorld is a 2-dimensional grid divided into square patches. The <i class="parameter">size</i> and <i class="parameter">topology</i> (toroidal, cylindrical, or fully bounded) of the environment can be set by the user. The environment has a certain <i class="parameter">temperature profile</i> and a <i class="parameter">distribution of houses</i>. More precisely:</p>
    <ul>
-      <li>Each individual patch has a specific temperature, which is a floating-point number in the interval [0, 100]. This defines the environment’s temperature profile.</li>
+      <li>Each individual patch has a specific temperature, which is a floating-point number in the interval [0, 100]. This defines the environment's temperature profile.</li>
       <li>The environment may also contain houses. Each individual house sits on one and only one patch, and each patch may contain at most one house.</li>
    </ul>
-   <p>Unless the user interacts with the model at run-time, neither the temperature profile nor the distribution of houses changes during the course of a simulation run. Finally, a patch’s neighbourhood is defined as the set of (up to 8) other patches with which the patch shares an edge or a corner.</p>
+   <p>Unless the user interacts with the model at run-time, neither the temperature profile nor the distribution of houses changes during the course of a simulation run. Finally, a patch's neighbourhood is defined as the set of (up to 8) other patches with which the patch shares an edge or a corner.</p>
 
 
    <H3>The agents</H3>
@@ -272,13 +272,13 @@
       <li>If the walker is on a patch with a house:
          <ul>
             <li>she will move to a random neighbouring patch with probability <i class="parameter">prob-leaving-home</i>, and</li>
-            <li>she will stay on the same patch with probability (1 – <i class="parameter">prob-leaving-home</i>).</li>
+            <li>she will stay on the same patch with probability (1 - <i class="parameter">prob-leaving-home</i>).</li>
          </ul>
       </li>
       <li>If the walker is on a patch with no house:
          <ul>
             <li>with probability <i class="parameter">prob-random-move</i> she will move to a random neighbouring patch and,</li>
-            <li>with probability (1 – <i class="parameter">prob-random-move</i>) she will explore her surroundings looking for heat. Specifically, the agent will consider the patch she is standing on together with its neighbouring patches as potential patches to be at. She will then move to one of the patches with the highest temperature within this set of potential target patches (i.e. she will potentially stay on the same patch). Ties are resolved randomly.</li>
+            <li>with probability (1 - <i class="parameter">prob-random-move</i>) she will explore her surroundings looking for heat. Specifically, the agent will consider the patch she is standing on together with its neighbouring patches as potential patches to be at. She will then move to one of the patches with the highest temperature within this set of potential target patches (i.e. she will potentially stay on the same patch). Ties are resolved randomly.</li>
          </ul>
       </li>
    </ul>
@@ -316,7 +316,7 @@
             <b>Predefined initial conditions</b>
             <br> If the button <i class="button">Special Conditions</i> is pressed, the model is parameterised as follows:
             <ul>
-               <li>Environment: The <i class="parameter">temperature profile</i> is concentrical, i.e. a patch’s temperature is inversely proportional to its distance to the central patch. A <i class="parameter">house</i> is created in every patch whose distance to the centre of the environment is greater or equal to 5 units and less than 6 units (distances between patches are measured from their centres).</li>
+               <li>Environment: The <i class="parameter">temperature profile</i> is concentrical, i.e. a patch's temperature is inversely proportional to its distance to the central patch. A <i class="parameter">house</i> is created in every patch whose distance to the centre of the environment is greater or equal to 5 units and less than 6 units (distances between patches are measured from their centres).</li>
                <li>Walkers: There are <i class="parameter">100 walkers</i> and they all start at a <i class="parameter">random initial location</i>. The value of <i class="parameter">prob-leaving-home</i> is 0.01 and the value of <i class="parameter">prob-random-move</i> is 0.5.</li>
             </ul>
 
@@ -341,7 +341,7 @@
 
    <p>Patches are coloured according to their temperature value (if <i class="parameter">display-mode</i> is <i class="value">Temperature</i>) or according to the number of visits they have received (if <i class="parameter">display-mode</i> is <i class="value">Visits</i>).</p>
    <ul>
-      <li>If the <i class="parameter">display-mode</i> is <i class="value">Temperature</i>, patches are coloured in shades of red: the higher the temperature, the darker the shade of red. The user can also read the integral part of patches’ temperature value by clicking on <i class="button">View ºC</i>.</li>
+      <li>If the <i class="parameter">display-mode</i> is <i class="value">Temperature</i>, patches are coloured in shades of red: the higher the temperature, the darker the shade of red. The user can also read the integral part of patches' temperature value by clicking on <i class="button">View &#186;C</i>.</li>
       <li>If the <i class="parameter">display-mode</i> is <i class="value">Visits</i>, patches are coloured in shades of blue according to the number of walkers that have spent some time on them. Each walker that has visited a certain patch leaves a mark that is used to create this density plot. The more walkers who have stayed for longer in a certain patch, the darker its shade of blue.</li>
    </ul>
 
@@ -362,7 +362,7 @@
    <p>This program has been designed and implemented by <a target="_blank" href="http://luis.izqui.org">Luis R. Izquierdo</a>, <a target="_blank" href="http://segis.izqui.org">Segismundo S. Izquierdo</a>, <a target="_blank" href="http://josema.galan.name">Jos&eacute; M. Gal&aacute;n</a> &amp; <a target="_blank" href="http://nacho.santos.name">Jos&eacute; I. Santos</a></p>
    <hr>
    <p><a name="Diffuse-heat"><b>Final notes: Precise workings of <i class="button">Diffuse heat</i></b>.</a>
-      <br>When the button <i class="button">Diffuse heat</i> is pressed, the following algorithm is executed sequentially 10 times: “Each patch shares 50 percent of its temperature with its eight neighbouring patches. If a patch has fewer than eight neighbours the remainder stays on the patch whose temperature is being shared. Temperature updating occurs synchronously, i.e. all patches calculate at the same time how much temperature to give to each of their neighbours considering their individual temperature at time t; once every patch has calculated how much to share with each of its neighbours, all patches’ new temperature values at time t + 1 are updated at the same time.”</p>
+      <br>When the button <i class="button">Diffuse heat</i> is pressed, the following algorithm is executed sequentially 10 times: "Each patch shares 50 percent of its temperature with its eight neighbouring patches. If a patch has fewer than eight neighbours the remainder stays on the patch whose temperature is being shared. Temperature updating occurs synchronously, i.e. all patches calculate at the same time how much temperature to give to each of their neighbours considering their individual temperature at time t; once every patch has calculated how much to share with each of its neighbours, all patches' new temperature values at time t + 1 are updated at the same time."</p>
 
 </body>
 
